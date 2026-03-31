@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">WA Messenger</string>
+    <string name="accessibility_description">Allows WA Messenger to automatically tap the Send button in WhatsApp for campaign messaging.</string>
+</resources>
