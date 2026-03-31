@@ -11,13 +11,16 @@ jobs:
     - name: Checkout repo
       uses: actions/checkout@v5
 
+    - name: Debug files
+      run: ls -R
+
     - name: Unzip project
-      run: unzip project.zip -d extracted
+      run: unzip *.zip -d extracted
 
     - name: Move files to root
       run: |
         mv extracted/* .
-        rm -rf extracted project.zip
+        rm -rf extracted *.zip
 
     - name: Commit extracted files
       run: |
