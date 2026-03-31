@@ -1,0 +1,29 @@
+name: Extract Project
+
+on:
+  workflow_dispatch:
+
+jobs:
+  extract:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v4
+
+    - name: Unzip project
+      run: |
+        unzip project.zip -d extracted
+
+    - name: Move files to root
+      run: |
+        mv extracted/* .
+        rm -rf extracted project.zip
+
+    - name: Commit extracted files
+      run: |
+        git config user.name "github-actions"
+        git config user.email "actions@github.com"
+        git add .
+        git commit -m "Extracted project files"
+        git push
