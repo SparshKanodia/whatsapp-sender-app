@@ -1,0 +1,29 @@
+name: Run Shell Script
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v5
+
+    - name: Make script executable
+      run: chmod +x move_to_repo_root.sh
+
+    - name: Run script
+      run: ./move_to_repo_root.sh
+
+    - name: Commit changes
+      run: |
+        git config user.name "github-actions"
+        git config user.email "actions@github.com"
+        git add .
+        git commit -m "Executed cleanup script" || echo "No changes"
+        git push
