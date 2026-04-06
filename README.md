@@ -284,3 +284,16 @@ This app is a **controlled, safe, and scalable messaging tool** that bridges Exc
 # 📬 Contact
 
 For queries or improvements, reach out via your development channel or repository issues.
+
+## 🤖 CI Automation (GitHub Actions)
+
+To avoid local environment issues (like incorrect `JAVA_HOME`), CI now runs with a fixed setup:
+
+- Ubuntu runner
+- Temurin JDK 17
+- Gradle cache enabled
+- Gradle configuration validation via `gradle :app:help`
+
+Workflow file: `.github/workflows/android-ci.yml`
+
+This gives a reliable baseline check for pull requests even if a local machine is misconfigured.
